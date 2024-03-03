@@ -1,0 +1,107 @@
+#etkinlikler {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.etkinlik {
+    background-color: #ffc107;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+.content-wrapper {
+    background-image: url(./images/index_main.jpg);
+    background-size: cover;
+    background-position: center center;
+    /* Resmi tam ortada konumlandırır */
+    background-repeat: no-repeat;
+    /* Resmin tekrarlanmasını önler */
+}
+
+.mybutton {
+    /* Green */
+    background-color: #343a40;
+    border: none;
+    color: #ffc107;
+    padding: 1px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    font-family: inherit;
+    font-weight: bolder;
+}
+
+.mybutton:hover {
+    color: #6c757d;
+}
+
+.sidebar-dark-secondary {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.nav-item {
+    background-color: #343a40;
+    border-radius: 10px;
+}
+
+.user-panel {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bolder;
+
+}
+
+.main-header {
+    background-color: #ffc107;
+}
+
+.modal {
+    display: none;
+    /* Modal varsayılan olarak gizli olacak */
+    position: fixed;
+    /* Pencereye göre sabit pozisyon */
+    z-index: 1;
+    /* Diğer içeriklerin üstünde görünür */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Tam ekran genişliği */
+    height: 100%;
+    /* Tam ekran yüksekliği */
+    overflow: auto;
+    /* Gerekirse içeriği kaydır */
+    background-color: rgb(0, 0, 0);
+    /* Siyahla yarı saydam arka plan */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Siyahla yarı saydam arka plan */
+}
+
+
+.sidebar {
+    position: fixed;
+    /* Sidebar'ı sabitle */
+    top: 280px;
+    /* En üstten itibaren */
+    left: 2px;
+    /* Sol kenardan itibaren */
+    height: 100%;
+    /* Tam ekran yüksekliğinde olacak şekilde */
+    overflow-y: auto;
+    /* İçerik çok uzunsa kaydırmayı etkinleştir */
+}
+
+.info img {
+    width: 150px;
+    /* Resmin genişliğini ayarlar */
+    height: auto;
+    /* Resmin orantılı yüksekliğini korur */
+    /
+}
+

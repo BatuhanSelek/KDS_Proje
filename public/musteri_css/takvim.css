@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Root yaptık çünkü css ' in her yerinden rootun içinde yazan değerlere
+ulaşmak istiyoruz. var fonksiyonu ile ulaşıyorum */
+
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark : #363949;
+    --color-light : rgba(132, 139, 200, 0.18);
+    --color-primary-variant : #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-3: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow-1: 0 2rem 3rem var(--color-light);
+
+}
+
+.dark-theme-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0,0,0,0.4);
+    --box-shadow-1: 0 2rem 3rem var(--color-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+/* 
+html {
+    font-size: 14px;
+} */
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.98rem;
+    user-select: none;
+    overflow-x: hidden;
+    background-image: url(../images/index_main.jpg);
+    background-size: cover;
+    background-position: center center;
+    /* Resmi tam ortada konumlandırır */
+    background-repeat: no-repeat;
+    /* Resmin tekrarlanmasını önler */
+}
+
+
+
+.container {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem;
+    
+}
+
+a {
+    color: var(--color-dark);
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2 {
+    font-size: 1.9rem;
+}
+
+h3{
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 0.8rem;
+}
+
+h5 {
+    font-size: 0.77rem;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+.profile-photo {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* son 24 saatlik veri diyen kısım */
+.text-muted {
+    color: var(--color-info-dark) ;
+}
+
+p{
+    color: var(--color-white);
+}
+
+b{
+    color: var(--color-white);  
+}
+
+.primary{
+    color: var(--color-primary);
+}
+
+.danger{
+    color: var(--color-danger);
+}
+
+.success{
+    color: var(--color-success);
+}
+
+.warning {
+    color: var(--color-warning);
+}
+
+
+#addEvent {
+    margin-top: 170px;
+    border: none;
+    width: 100px;
+    border-radius: 40px;
+    height: 50px;
+    margin-left: 1050px;
+    background-color: #343a40;
+    color: #fff;
+    font-weight: bold;
+}
+  
+#addEvent:hover {
+    background-color: #ffc107;
+    color: #fff;
+}
+  
+.today {
+    background-color: #11101d; /* Örnek olarak yeşil renk */
+    color: #fff; /* Örnek olarak siyah renk */
+}
+  
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Beyaz opak arka plan */
+}
+  
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* Modal içeriği için beyaz arka plan */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+}
+
+.calendar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height:  600px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-left: 100px;
+}
+  
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+  
+.monthYear {
+    text-align: center;
+    font-weight: 600;
+    width: 150px;
+}
+  
+.header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+  
+.days {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+}
+  
+.day {
+  
+    text-align: center;
+    padding: 5px;
+    color: #999FA6;
+    font-weight: 500;
+  
+}
+  
+.dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+  
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin: auto;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: 0.2s;
+}
+  
+.date:hover,
+.date.active {
+    background-color: #ffc107;
+    color: #fff;
+}
+  
+.date.empty {
+    color: #d2d2d2;
+}
+  
+.date.empty:hover {
+    background-color: #fff;
+    color: #fff;
+}
+
+
+
+
+
+
+
+  

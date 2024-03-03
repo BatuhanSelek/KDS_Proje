@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+        integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
+        integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+        integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+        integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css"
+        integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"
+        integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="./css/kayit.css">
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'http://localhost:3000/api/etkinlik_getir',
+                method: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Data başarıyla alındığında tabloyu doldurun
+                    data.forEach(function (etkinlik) {
+                        var row = $('<tr>');
+
+                        row.append($('<td>').text(etkinlik.etkinlik_adi));
+
+
+
+                        $('#etkinlik_tablo tbody').append(row);
+                    });
+                }
+            });
+        });
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:3000/api/etGraf",  // Veri çekmek istediğiniz endpoint
+                method: "GET",
+                success: function (sonuc) {
+                    var ctx = $('#polarAreaChart')[0].getContext('2d');
+                    new Chart(ctx, {
+                        type: 'polarArea',
+                        data: sonuc,
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <style>
+        .content-wrapper {
+            background-image: url(./images/index_main.jpg);
+            background-size: cover;
+            background-position: center center;
+            /* Resmi tam ortada konumlandırır */
+            background-repeat: no-repeat;
+            /* Resmin tekrarlanmasını önler */
+        }
+    </style>
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <form class="form-inline ml-3" onsubmit="performSearch()">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Arama yap..."
+                            aria-label="Search" id="navbarSearch">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="search-results">
+                    <!-- Arama sonuçları burada gösterilecek -->
+                </div>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/login.html" class="nav-link" data-widget="control-sidebar" data-slide="true"
+                        role="button">
+                        <button class="mybutton"><span id="geri">Çıkış</span></button>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="main-sidebar sidebar-dark-secondary elevation-4">
+            <div class="user-panel">
+                <div class="info">
+                    <img src="./images/RoxboroughCF.png" alt="">
+
+                </div>
+            </div>
+            <a href="#" class="brand-link">
+                <span class="brand-text" style="color: #343a40; font-family:fantasy; font-size: 30px;">Şehir
+                    Dershaneleri</span>
+            </a>
+
+            <div class="sidebar">
+
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="/kampanya.html" class="nav-link">
+                                <i class="fa-regular fa-rectangle-list"></i>
+                                <p>Kampanyalar</p>
+
+                            </a>
+                        </li>
+                        <br><br>
+                        <li class="nav-item">
+                            <a href="/kayit.html" class="nav-link">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <p>Potansiyel Kayıt</p>
+
+                            </a>
+                        </li>
+                        <br><br>
+                        <li class="nav-item">
+                            <a href="/grafik.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <p>Grafikler</p>
+
+                            </a>
+                        </li>
+                        <br><br>
+                        <li class="nav-item">
+                            <a href="/etkinlik.html" class="nav-link">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <p>Etkinlikler</p>
+
+                            </a>
+                        </li>
+                        <br><br>
+                        <li class="nav-item">
+                            <a href="/sorgu.html" class="nav-link">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <p>Sorgu</p>
+
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="content-wrapper">
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card" style="border-radius: 50px; background-color: #343a40;">
+                            <div class="card-body">
+                                <table id="etkinlik_tablo" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Etkinlik Adı</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" style="border-radius: 50px; background-color: white; height: 608px;">
+                            <div class="card-body">
+                                <canvas id="polarAreaChart"></canvas>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" style="border-radius: 50px; background-color: #343a40;">
+                            <div class="card-body">
+                                <p style="color: white; font-size:larger;">2024 yılında</p>
+                                <input type="number" id="giris1">
+                                <p style="color: white; font-size:larger;">kişi katılması durumunda yaklaşık olarak</p>
+                                <span id="birinci" style="color: white; font-size:larger;">---</span>
+                                <p style="color: white; font-size:larger;">TL Harcama Yapılması
+                                    Beklenilir,</p>
+                                <button id="buton1">Hesapla</button>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+
+                </div>
+            </section>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        var ucuncu = document.getElementById("ucuncu")
+        var dorduncu = document.getElementById("dorduncu");
+        var besinci = document.getElementById("besinci");
+        var altinci = document.getElementById("altinci");
+
+        var buton1 = document.getElementById("buton1");
+        var buton2 = document.getElementById("buton2");
+        var buton3 = document.getElementById("buton3");
+
+
+        var giris2 = Number(document.getElementById("giris2")).value;
+        var giris3 = Number(document.getElementById("giris3")).value;
+
+
+
+        buton1.addEventListener("click", ilk);
+
+        function ilk() {
+            var birinci = document.getElementById("birinci");
+            var ikinci = document.getElementById("ikinci");
+
+            var giris1 = document.getElementById("giris1").value;
+
+
+            var islem1 = Number(giris1) + 3450;
+            birinci.innerHTML = islem1;
+
+
+            var islem2 = islem1 * 4500
+            ikinci.innerHTML = islem2
+        }
+
+
+        buton2.addEventListener("click", iki);
+
+        function iki() {
+            var ucuncu = document.getElementById("ucuncu");
+            var dorduncu = document.getElementById("dorduncu");
+
+            var giris2 = document.getElementById("giris2").value;
+
+
+            var islem3 = Number(giris2) + 3250;
+            ucuncu.innerHTML = islem3;
+
+
+            var islem4 = islem3 * 4000
+            dorduncu.innerHTML = islem4
+        }
+
+        buton3.addEventListener("click", uc);
+
+        function uc() {
+            var besinci = document.getElementById("besinci");
+            var altinci = document.getElementById("altinci");
+
+            var giris3 = document.getElementById("giris3").value;
+
+
+            var islem5 = Number(giris3) - 3450;
+            besinci.innerHTML = islem5;
+
+
+            var islem6 = islem5 * 9000
+            altinci.innerHTML = islem6
+        }
+    </script>
+
+
+</body>
+
+</html>

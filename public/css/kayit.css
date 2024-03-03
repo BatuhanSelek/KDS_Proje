@@ -1,0 +1,77 @@
+.mybutton {
+    /* Green */
+    background-color: #343a40;
+    border: none;
+    color: #ffc107;
+    padding: 1px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    font-family: inherit;
+    font-weight: bolder;
+}
+
+.mybutton:hover {
+    color: #6c757d;
+}
+
+.sidebar-dark-secondary {
+    background-color: #ffc107;
+    /* Secondary rengin HEX kodu ya da istediğiniz rengin kodu */
+    color: #fff;
+    /* Metin rengi */
+}
+
+.nav-item {
+    background-color: #343a40;
+    border-radius: 10px;
+}
+
+.user-panel {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bolder;
+
+}
+
+.main-header {
+    background-color: #ffc107;
+}
+
+.form-group {
+    color: white;
+}
+
+.sidebar {
+    position: fixed;
+    /* Sidebar'ı sabitle */
+    top: 280px;
+    /* En üstten itibaren */
+    left: 2px;
+    /* Sol kenardan itibaren */
+    height: 100%;
+    /* Tam ekran yüksekliğinde olacak şekilde */
+    overflow-y: auto;
+    /* İçerik çok uzunsa kaydırmayı etkinleştir */
+}
+
+.info img {
+    width: 150px;
+    /* Resmin genişliğini ayarlar */
+    height: auto;
+    /* Resmin orantılı yüksekliğini korur */
+    /
+}
+
+.table th {
+    color: white;
+    font-size: 27px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.table td {
+    color: white;
+    font-weight: bolder;
+    font-size: 17px;
+}

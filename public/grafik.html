@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafikler</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
+        integrity="sha512-IuO+tczf4J43RzbCMEFggCWW5JuX78IrCJRFFBoQEXNvGI6gkUw4OjuwMidiS4Lm9Q2lILzpJwZuMWuSEeT9UQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
+        integrity="sha512-KBeR1NhClUySj9xBB0+KRqYLPkM6VvXiiWaSz/8LCQNdRpUm38SWUrj0ccNDNSkwCD9qPA4KobLliG26yPppJA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+        integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+        integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css"
+        integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"
+        integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="./css/grafik.css">
+
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:3000/api/butceGraf",  // Veri çekmek istediğiniz endpoint
+                method: "GET",
+                success: function (sonuc) {
+                    var ctx = $('#pieChart')[0].getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: sonuc,
+                    });
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:3000/api/kampanyaGraf",  // Veri çekmek istediğiniz endpoint
+                method: "GET",
+                success: function (sonuc) {
+                    var ctx = $('#lineChart')[0].getContext('2d');
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: sonuc,
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:3000/api/kanalGraf",  // Veri çekmek istediğiniz endpoint
+                method: "GET",
+                success: function (sonuc) {
+                    var ctx = $('#barChart')[0].getContext('2d');
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: sonuc,
+                    });
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+    <style>
+        .content-wrapper {
+            background-image: url(./images/index_main.jpg);
+            background-size: cover;
+            background-position: center center;
+            /* Resmi tam ortada konumlandırır */
+            background-repeat: no-repeat;
+            /* Resmin tekrarlanmasını önler */
+        }
+    </style>
+
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <form class="form-inline ml-3" onsubmit="performSearch()">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Arama yap..."
+                            aria-label="Search" id="navbarSearch">
+                        <div class="input-group-append">
+                            <button class="btn btn-navbar" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="search-results">
+                    <!-- Arama sonuçları burada gösterilecek -->
+                </div>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/login.html" class="nav-link" data-widget="control-sidebar" data-slide="true"
+                        role="button">
+                        <button class="mybutton"><span id="geri">Çıkış</span></button>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="main-sidebar sidebar-dark-secondary elevation-4">
+            <div class="user-panel">
+                <div class="info">
+                    <img src="./images/RoxboroughCF.png" alt="">
+                </div>
+            </div>
+            <a href="#" class="brand-link">
+                <span class="brand-text" style="color: #343a40; font-family:fantasy; font-size: 30px;">Şehir
+                    Dershaneleri</span>
+            </a>
+
+            <div class="sidebar">
+
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="/kampanya.html" class="nav-link">
+                                <i class="fa-regular fa-rectangle-list"></i>
+                                <p>Kampanyalar</p>
+
+                            </a>
+                        </li>
+                        <br><br>
+                        <li class="nav-item">
+                            <a href="/kayit.html" class="nav-link">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <p>Potansiyel Kayıt</p>
+
+                            </a>
+                        </li>
+                        <br><br>
+                        <li class="nav-item">
+                            <a href="/grafik.html" class="nav-link">
+                                <i class="fa-solid fa-chart-line"></i>
+                                <p>Grafikler</p>
+
+                            </a>
+                        </li>
+                        <br><br>
+                        <li class="nav-item">
+                            <a href="/etkinlik.html" class="nav-link">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <p>Etkinlikler</p>
+
+                            </a>
+                        </li>
+                        <br><br>
+                        <li class="nav-item">
+                            <a href="/sorgu.html" class="nav-link">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <p>Sorgu</p>
+
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="info-box" style="background-color: #343a40; border-radius: 20px;">
+                        <span class="info-box-icon bg-warning" style="border-radius: 30px;"><i
+                                class="fa-solid fa-person-walking-arrow-loop-left"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text" style="color: white; font-size: 25px;">Toplam Katılımcı Sayısı
+                            </span>
+                            <span class="info-box-number" style="color: white; font-size: 25px;"
+                                id="totalKatilimci">Yükleniyor...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="info-box" style="background-color: #343a40; border-radius: 20px;">
+                        <span class="info-box-icon bg-danger" style="border-radius: 30px;"><i
+                                class="fa-solid fa-comment-medical"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text" style="color: white; font-size: 25px;">Toplam Başvuru Sayısı
+                            </span>
+                            <span class="info-box-number" style="color: white; font-size: 25px;"
+                                id="totalBasvuru">Yükleniyor...</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="info-box" style="background-color: #343a40; border-radius: 20px;">
+                        <span class="info-box-icon bg-info" style="border-radius: 30px;"><i
+                                class="fa-solid fa-bookmark"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text" style="color: white; font-size: 25px;">Toplam Kayıt Sayısı
+                            </span>
+                            <span class="info-box-number" style="color: white; font-size: 25px;"
+                                id="totalKayit">Yükleniyor...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--<section class="content">-->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Kampanyalar İçin Ayrılan Bütçe</h3>
+                </div>
+                <div class="card-body">
+                    <canvas id="pieChart"></canvas>
+
+
+
+
+                </div>
+            </div>
+            <!--</section>-->
+
+
+
+            <!--<section class="content">-->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Kampanyalardaki Başvuru Sayıları</h3>
+                </div>
+                <div class="card-body">
+                    <canvas id="lineChart"></canvas>
+
+
+
+                </div>
+            </div>
+            <!--</section>-->
+
+
+
+            <!--<section class="content">-->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Kanallara Göre Toplam Katılımcı</h3>
+                </div>
+                <div class="card-body">
+
+                    <canvas id="barChart"></canvas>
+
+
+
+                </div>
+            </div>
+            <!--</section>-->
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/totalBasvuru')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('totalBasvuru').textContent = data[0].totalBasvuru + ' Kişi';
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                    document.getElementById('totalBasvuru').textContent = 'Bilgi alınamadı';
+                });
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/totalKatilimci')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('totalKatilimci').textContent = data[0].totalKatilimci + ' Kişi';
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                    document.getElementById('totalKatilimci').textContent = 'Bilgi alınamadı';
+                });
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/totalKayit')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('totalKayit').textContent = data[0].totalKayit + ' Kişi';
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                    document.getElementById('totalKayit').textContent = 'Bilgi alınamadı';
+                });
+        });
+
+    </script>
+</body>
+
+</html>

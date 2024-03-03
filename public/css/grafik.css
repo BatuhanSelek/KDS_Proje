@@ -1,0 +1,90 @@
+.mybutton {
+    /* Green */
+    background-color: #343a40;
+    border: none;
+    color: #ffc107;
+    padding: 1px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    font-family: inherit;
+    font-weight: bolder;
+}
+
+.mybutton:hover {
+    color: #6c757d;
+}
+
+.sidebar-dark-secondary {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.nav-item {
+    background-color: #343a40;
+    border-radius: 10px;
+}
+
+.user-panel {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bolder;
+
+}
+
+.main-header {
+    background-color: #ffc107;
+}
+
+/* 
+#curve_chart {
+    width: 100%;
+    height: 600px;
+
+    margin: 0 auto;
+
+} */
+
+
+#columnchart_values{
+    width : 100%;
+    height : 600px;
+    position: relative;
+    left: 350px;
+}
+
+
+.card {
+    border-radius: 30px;
+    text-align: center;
+    height: 900px;
+
+ 
+}
+
+#pieChart{
+    margin-left: 350px;
+}
+
+.sidebar {
+    position: fixed;
+    /* Sidebar'ı sabitle */
+    top: 280px;
+    /* En üstten itibaren */
+    left: 2px;
+    /* Sol kenardan itibaren */
+    height: 100%;
+    /* Tam ekran yüksekliğinde olacak şekilde */
+    overflow-y: auto;
+    /* İçerik çok uzunsa kaydırmayı etkinleştir */
+}
+
+.info img {
+    width: 150px;
+    /* Resmin genişliğini ayarlar */
+    height: auto;
+    /* Resmin orantılı yüksekliğini korur */
+    /
+}
+
+
